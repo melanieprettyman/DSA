@@ -29,3 +29,33 @@ function twoPointer(arr, target) {
 
   return [-1, -1]; // No pair found
 }
+
+function testTwoPointer() {
+  const testCases = [
+    { arr: [1, 2, 3, 4, 6], target: 6, expected: [1, 3] },
+    { arr: [2, 5, 9, 11], target: 11, expected: [0, 2] },
+    { arr: [0, 3, 4, 5, 6], target: 10, expected: [2, 4] },
+    { arr: [1, 2, 3, 4, 5], target: 10, expected: [-1, -1] }, // No valid pair
+    { arr: [], target: 5, expected: [-1, -1] }, // Empty array
+    { arr: [3, 5], target: 8, expected: [0, 1] }, // Smallest array possible for a valid pair
+    { arr: [-3, -1, 2, 5, 9], target: 4, expected: [1, 3] }, // Negative numbers
+  ];
+
+  testCases.forEach((test, index) => {
+    const { arr, target, expected } = test;
+    const result = myTwoPointer(arr, target);
+    const passed = JSON.stringify(result) === JSON.stringify(expected);
+    console.log(
+      `Test ${index + 1}: ${
+        passed ? "Passed" : "Failed"
+      } - Expected [${expected}] and got [${result}]`
+    );
+  });
+}
+
+function myTwoPointer(arr, target) {
+  return 0;
+}
+
+// Run the test function
+testTwoPointer();

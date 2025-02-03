@@ -21,3 +21,33 @@ function rotateArray(arr, k) {
     }
   }
 }
+
+function testRotateArray() {
+  const testCases = [
+    { array: [1, 2, 3, 4, 5, 6], k: 2, expected: [5, 6, 1, 2, 3, 4] },
+    { array: [1, 2, 3, 4, 5, 6], k: 0, expected: [1, 2, 3, 4, 5, 6] },
+    { array: [1, 2, 3, 4, 5, 6], k: 6, expected: [1, 2, 3, 4, 5, 6] }, // k same as length
+    { array: [1, 2, 3, 4, 5, 6], k: 9, expected: [4, 5, 6, 1, 2, 3] }, // k larger than array length
+    { array: [1], k: 3, expected: [1] }, // Single element
+    { array: [], k: 3, expected: [] }, // Empty array
+    { array: [1, 2, 3, 4, 5, 6], k: 3, expected: [4, 5, 6, 1, 2, 3] }, // Half-length rotation
+  ];
+
+  testCases.forEach((test, index) => {
+    const { array, k, expected } = test;
+    myRotateArray(array, k);
+    const passed = JSON.stringify(array) === JSON.stringify(expected);
+    console.log(
+      `Test ${index + 1}: ${
+        passed ? "Passed" : "Failed"
+      } - Expected [${expected}] and got [${array}]`
+    );
+  });
+}
+
+function myRotateArray(arr, k) {
+  return 0;
+}
+
+// Run the test function
+testRotateArray();

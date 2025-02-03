@@ -17,3 +17,34 @@ function prefixSum(arr) {
   }
   return (i, j) => prefix[j + 1] - prefix[i];
 }
+
+function testPrefixSum() {
+  const arr = [1, 2, 3, 4, 5];
+  const getSum = myPrefixSum(arr); // This initializes the prefix sum array and returns a function to calculate the sum between two indices
+
+  const testCases = [
+    { i: 0, j: 2, expected: 6 }, // sum of 1+2+3
+    { i: 1, j: 3, expected: 9 }, // sum of 2+3+4
+    { i: 0, j: 4, expected: 15 }, // sum of 1+2+3+4+5
+    { i: 2, j: 4, expected: 12 }, // sum of 3+4+5
+    { i: 3, j: 3, expected: 4 }, // sum of just 4
+  ];
+
+  testCases.forEach((test, index) => {
+    const { i, j, expected } = test;
+    const result = getSum(i, j);
+    const passed = result === expected;
+    console.log(
+      `Test ${index + 1}: ${
+        passed ? "Passed" : "Failed"
+      } - Expected ${expected} and got ${result}`
+    );
+  });
+}
+
+function myPrefixSum(arr) {
+  return 0;
+}
+
+// Run the test function
+testPrefixSum();
