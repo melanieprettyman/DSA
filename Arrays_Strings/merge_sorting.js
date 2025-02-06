@@ -37,7 +37,10 @@ function merge(left, right) {
     }
   }
 
-  return result.concat(left.slice(leftIndex)).concat(right.slice(rightIndex));
+  let leftRemainder = left.slice(leftIndex);
+  let rightRemainder = right.slice(rightIndex);
+
+  return result.concat(leftRemainder).concat(rightRemainder);
 }
 
 function testMergeSort() {
@@ -64,8 +67,18 @@ function testMergeSort() {
 }
 
 function myMergeSort(arr) {
-  return 0;
+  // Base case, array is size 1
+  if (arr.length <= 1) {
+    return arr;
+  }
+  let middleIndex = Math.floor(arr.length / 2);
+  let left = myMergeSort(arr.slice(0, middleIndex));
+  let right = myMergeSort(arr.slice(middleIndex));
+
+  return myMerge(left, right);
 }
+
+function myMerge(left, right) {}
 
 // Run the test function
 testMergeSort();
