@@ -42,9 +42,7 @@ function testPrefixSum() {
   });
 }
 
-function myPrefixSum(arr) {
-  return 0;
-}
+function myPrefixSum(arr) {}
 
 // Run the test function
 testPrefixSum();

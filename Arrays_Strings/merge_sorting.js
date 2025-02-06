@@ -7,6 +7,10 @@
  * Why It Works: Merge Sort breaks the array into halves until each subarray contains a
  * single element. Then it merges those subarrays to produce sorted arrays until the entire
  * array is merged back together.
+ * 
+ * Divide:  Divide the list or array recursively into two halves until it can no more be divided. 
+   Conquer:  Each subarray is sorted individually using the merge sort algorithm. 
+   Merge:  The sorted subarrays are merged back together in sorted order. The process continues until all elements from both subarrays have been merged. 
  */
 function mergeSort(arr) {
   if (arr.length <= 1) return arr;

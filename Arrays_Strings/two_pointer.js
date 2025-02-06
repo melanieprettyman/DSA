@@ -54,7 +54,19 @@ function testTwoPointer() {
 }
 
 function myTwoPointer(arr, target) {
-  return 0;
+  let left = 0;
+  let right = arr.length - 1;
+  while (left < right) {
+    let sum = arr[left] + arr[right];
+    if (target == sum) {
+      return [left, right];
+    } else if (target > sum) {
+      left++;
+    } else {
+      right--;
+    }
+  }
+  return [-1, -1];
 }
 
 // Run the test function
