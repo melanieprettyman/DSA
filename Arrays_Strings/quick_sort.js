@@ -7,29 +7,48 @@
  * Why It Works: Quick Sort uses a pivot element to partition the array into two parts,
  * elements less than the pivot and elements greater than the pivot, then recursively
  * sorts the sub-arrays. This is efficient on average but can degrade to O(n^2) if the
- * pivot elements are not well chosen.
+ * pivot element is first or last element of array.
+ *
+ *
+ * 1. choose pivot
+ * 2. move pivot to the end of the array to get it out of the way
+ * 3. find itemFromRight (smaller than pivot) and itemFromLeft (larger than pivot) and swap them.
+ *    stop when the index of itemFromLeft > index of itemFromRight
+ *    swap itemFromLeft with pivot
  */
 function quickSort(arr, left = 0, right = arr.length - 1) {
   if (left < right) {
     const pivotIndex = partition(arr, left, right);
+    // Sort left side
     quickSort(arr, left, pivotIndex - 1);
+    // sort right side
     quickSort(arr, pivotIndex + 1, right);
   }
   return arr;
 }
 
 function partition(arr, left, right) {
+  // set the last elem to the pivot
   const pivot = arr[right];
-  let i = left - 1;
+  let index = left;
 
   for (let j = left; j < right; j++) {
-    if (arr[j] <= pivot) {
-      i++;
-      [arr[i], arr[j]] = [arr[j], arr[i]]; // swap elements
+    if (arr[j] < pivot) {
+      // if the element is less than pivot swap with left most element
+      swap(arr, index, j);
+      index++;
     }
   }
-  [arr[i + 1], arr[right]] = [arr[right], arr[i + 1]]; // swap pivot
-  return i + 1;
+  // pivot needs to be moved to a position where elements to the left are smaller, and elements to the right are greater or equal.
+  // swap the pivot with the last element of the left partition.
+  swap(arr, index, right);
+  return index; // return end of left side as index
+}
+
+function swap(array, i, j) {
+  temp = array[i];
+  array[i] = array[j];
+  array[j] = temp;
 }
 
 function testQuickSort() {
@@ -59,9 +78,11 @@ function testQuickSort() {
   });
 }
 
-function myQuickSort(arr, left = 0, right = arr.length - 1) {
-  return 0;
-}
+function myQuickSort(arr, left = 0, right = arr.length - 1) {}
+
+function myPartition(arr, left, right) {}
+
+function mySwap(arr, i, j) {}
 
 // Run the test function
 testQuickSort();

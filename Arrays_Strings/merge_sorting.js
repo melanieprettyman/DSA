@@ -8,6 +8,8 @@
  * single element. Then it merges those subarrays to produce sorted arrays until the entire
  * array is merged back together.
  * 
+ * time= O(n log n) {n bc we have to touch every element once, log n bc we dont have to compare everything to everything. we compare their local list to eachother, which gets smaller}.
+ * 
  * Divide:  Divide the list or array recursively into two halves until it can no more be divided. 
    Conquer:  Each subarray is sorted individually using the merge sort algorithm. 
    Merge:  The sorted subarrays are merged back together in sorted order. The process continues until all elements from both subarrays have been merged. 
@@ -66,17 +68,7 @@ function testMergeSort() {
   });
 }
 
-function myMergeSort(arr) {
-  // Base case, array is size 1
-  if (arr.length <= 1) {
-    return arr;
-  }
-  let middleIndex = Math.floor(arr.length / 2);
-  let left = myMergeSort(arr.slice(0, middleIndex));
-  let right = myMergeSort(arr.slice(middleIndex));
-
-  return myMerge(left, right);
-}
+function myMergeSort(arr) {}
 
 function myMerge(left, right) {}
 

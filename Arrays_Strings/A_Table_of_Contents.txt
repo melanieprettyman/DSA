@@ -1,9 +1,9 @@
-1. Two Pointers
-2. Sliding Window
+1. Two Pointers X
+2. Sliding Window X
 3. Hashing
-4. Prefix Sum
+4. Prefix Sum X
 5. Sorting
-    -Merge
+    -Merge X
     -Quick
 6. Kadane's Algorithm
 7. Shifting Pointers
