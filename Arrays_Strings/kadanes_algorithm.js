@@ -13,7 +13,7 @@ function kadaneAlgorithm(arr) {
   let maxGlobal = arr[0];
 
   for (let i = 1; i < arr.length; i++) {
-    maxCurrent = Math.max(arr[i], maxCurrent + arr[i]);
+    maxCurrent = Math.max(arr[i], maxCurrent + arr[i]); // Using just maxCurrent += arr[i] would mean always extending the current subarray without ever considering starting a new one.
     if (maxCurrent > maxGlobal) {
       maxGlobal = maxCurrent;
     }

@@ -58,9 +58,9 @@ function myTwoPointer(arr, target) {
   let right = arr.length - 1;
   while (left < right) {
     let sum = arr[left] + arr[right];
-    if (target == sum) {
+    if (sum === target) {
       return [left, right];
-    } else if (target > sum) {
+    } else if (sum < target) {
       left++;
     } else {
       right--;

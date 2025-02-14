@@ -42,7 +42,13 @@ function testPrefixSum() {
   });
 }
 
-function myPrefixSum(arr) {}
+function myPrefixSum(arr) {
+  let prefix = new Array(arr.length + 1).fill(0);
+  for (let i = 1; i < prefix.length; i++) {
+    prefix[i] = prefix[i - 1] + arr[i - 1];
+  }
+  return (i, j) => prefix[j + 1] - prefix[i];
+}
 
 // Run the test function
 testPrefixSum();

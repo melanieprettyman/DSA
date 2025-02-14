@@ -4,7 +4,7 @@
 4. Prefix Sum X
 5. Sorting
     -Merge X
-    -Quick
+    -Quick X
 6. Kadane's Algorithm
 7. Shifting Pointers
 8. Palindrome

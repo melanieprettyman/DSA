@@ -53,7 +53,19 @@ function testMaxSumSubarray() {
 }
 
 function myMaxSumSubarray(arr, k) {
-  return 0;
+  let windowSum = 0;
+  let sum = 0;
+  let windowStart = 0;
+
+  for (let windowEnd = 0; windowEnd < arr.length; windowEnd++) {
+    windowSum += arr[windowEnd];
+    if (windowEnd >= k - 1) {
+      sum = Math.max(sum, windowSum);
+      windowSum -= arr[windowStart];
+      windowStart++;
+    }
+  }
+  return sum;
 }
 
 // Run the test function

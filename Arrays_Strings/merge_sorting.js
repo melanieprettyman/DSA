@@ -15,6 +15,7 @@
    Merge:  The sorted subarrays are merged back together in sorted order. The process continues until all elements from both subarrays have been merged. 
  */
 function mergeSort(arr) {
+  // Base case: return array when length is 1
   if (arr.length <= 1) return arr;
 
   const middle = Math.floor(arr.length / 2);
@@ -68,9 +69,36 @@ function testMergeSort() {
   });
 }
 
-function myMergeSort(arr) {}
+function myMergeSort(arr) {
+  if (arr.length <= 1) {
+    return arr;
+  }
+  let middle = Math.floor(arr.length / 2);
+  let left = myMergeSort(arr.slice(0, middle));
+  let right = myMergeSort(arr.slice(middle));
 
-function myMerge(left, right) {}
+  return myMerge(left, right);
+}
+
+function myMerge(left, right) {
+  let result = [];
+  let leftIndex = 0;
+  let rightIndex = 0;
+  while (leftIndex < left.length && rightIndex < right.length) {
+    if (left[leftIndex] <= right[rightIndex]) {
+      result.push(left[leftIndex]);
+      leftIndex++;
+    } else {
+      result.push(right[rightIndex]);
+      rightIndex++;
+    }
+  }
+  let leftRemainder = left.slice(leftIndex);
+  let rightRemainder = right.slice(rightIndex);
+
+  result = result.concat(leftRemainder).concat(rightRemainder);
+  return result;
+}
 
 // Run the test function
 testMergeSort();

@@ -78,11 +78,34 @@ function testQuickSort() {
   });
 }
 
-function myQuickSort(arr, left = 0, right = arr.length - 1) {}
+function myQuickSort(arr, left = 0, right = arr.length - 1) {
+  if (left < right) {
+    let pivotIndex = myPartition(arr, left, right);
+    myQuickSort(arr, left, pivotIndex - 1);
+    myQuickSort(arr, pivotIndex + 1, right);
+  }
+  return arr;
+}
 
-function myPartition(arr, left, right) {}
+function myPartition(arr, left, right) {
+  let pivot = arr[right];
+  let index = left;
 
-function mySwap(arr, i, j) {}
+  for (let j = left; j < right; j++) {
+    if (arr[j] < pivot) {
+      swap(arr, index, j);
+      index++;
+    }
+  }
+  swap(arr, index, right);
+  return index;
+}
+
+function mySwap(arr, i, j) {
+  let temp = arr[i];
+  arr[i] = arr[j];
+  arr[j] = temp;
+}
 
 // Run the test function
 testQuickSort();
