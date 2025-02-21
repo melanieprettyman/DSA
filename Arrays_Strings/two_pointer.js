@@ -30,6 +30,7 @@ function twoPointer(arr, target) {
   return [-1, -1]; // No pair found
 }
 
+<<<<<<< HEAD
 function testTwoPointer() {
   const testCases = [
     { arr: [1, 2, 3, 4, 6], target: 6, expected: [1, 3] },
@@ -71,3 +72,23 @@ function myTwoPointer(arr, target) {
 
 // Run the test function
 testTwoPointer();
+=======
+function twoPointer(arr, target) {
+    let l = 0; 
+    let r = arr.length -1; 
+
+    while(l<r){
+        const sum = arr[left] + arr[right];
+
+        if(sum === target){
+            return [l,r];
+        }else if(sum < target){
+            l++;
+        }else{
+            r++;
+        }
+    }
+
+    return [-1,-1];
+};
+>>>>>>> b3625e5 (trie)
