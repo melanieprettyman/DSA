@@ -100,7 +100,7 @@ class Trie {
 }
 
 function testInsertAndSearch() {
-  const trie = new Trie();
+  const trie = new Trie_();
   trie.insert("apple");
   console.log(
     "Test Insert and Search - Expected true, got:",
@@ -115,7 +115,7 @@ function testInsertAndSearch() {
 testInsertAndSearch();
 
 function testSearchNonExistent() {
-  const trie = new Trie();
+  const trie = new Trie_();
   trie.insert("hello");
   console.log(
     "Test Search Unrelated Word - Expected false, got:",
@@ -126,7 +126,7 @@ function testSearchNonExistent() {
 testSearchNonExistent();
 
 function testPrefix() {
-  const trie = new Trie();
+  const trie = new Trie_();
   trie.insert("apple");
   console.log(
     "Test Prefix 'app' - Expected true, got:",
@@ -147,7 +147,7 @@ function testPrefix() {
 testPrefix();
 
 function testMultipleInsertsAndSearches() {
-  const trie = new Trie();
+  const trie = new Trie_();
   trie.insert("apple");
   trie.insert("app");
   trie.insert("apricot");
@@ -161,3 +161,12 @@ function testMultipleInsertsAndSearches() {
 }
 
 testMultipleInsertsAndSearches();
+
+// ---------------------------------------[PRACTICE]----------------------------------------
+class TrieNode_ {}
+class Trie_ {
+  insert(word, node = this.root) {}
+
+  search(word, node = this.root) {}
+  startsWith(prefix, node = this.root) {}
+}
