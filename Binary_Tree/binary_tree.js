@@ -244,6 +244,44 @@ function areIdentical(root1, root2) {
   );
 }
 
+// ---------------------------------------[PRACTICE]----------------------------------------
+
+class TreeNode_ {}
+
+class BinarySearchTree_ {
+  insert(value) {}
+
+  insertNode(currentNode, newNode) {}
+
+  delete(value) {}
+
+  deleteNode(currentNode, value) {}
+
+  findMinNode(currentNode) {}
+
+  //TRAVERSAL
+
+  inOrder() {}
+
+  inOrderTraversal(currentNode, result) {}
+
+  preOrder() {}
+
+  preOrderTraversal(currentNode, result) {}
+
+  postOrder() {}
+
+  postOrderTraversal(currentNode, result) {}
+}
+
+function isBalanced_(root) {}
+
+function maxDepth_(node) {}
+
+function areIdentical_(root1, root2) {}
+
+// ---------------------------------------[TEST]----------------------------------------
+
 function testBSTInsertionAndStructure() {
   const bst = new BinarySearchTree_();
   bst.insert(50);
@@ -328,39 +366,3 @@ function testIdenticalTrees() {
 }
 
 testIdenticalTrees();
-
-// ---------------------------------------[PRACTICE]----------------------------------------
-
-class TreeNode_ {}
-
-class BinarySearchTree_ {
-  insert(value) {}
-
-  insertNode(currentNode, newNode) {}
-
-  delete(value) {}
-
-  deleteNode(currentNode, value) {}
-
-  findMinNode(currentNode) {}
-
-  //TRAVERSAL
-
-  inOrder() {}
-
-  inOrderTraversal(currentNode, result) {}
-
-  preOrder() {}
-
-  preOrderTraversal(currentNode, result) {}
-
-  postOrder() {}
-
-  postOrderTraversal(currentNode, result) {}
-}
-
-function isBalanced_(root) {}
-
-function maxDepth_(node) {}
-
-function areIdentical_(root1, root2) {}
