@@ -99,6 +99,16 @@ class Trie {
   }
 }
 
+// ---------------------------------------[PRACTICE]----------------------------------------
+class TrieNode_ {}
+class Trie_ {
+  insert(word, node = this.root) {}
+
+  search(word, node = this.root) {}
+  startsWith(prefix, node = this.root) {}
+}
+
+// ---------------------------------------[TEST]----------------------------------------
 function testInsertAndSearch() {
   const trie = new Trie_();
   trie.insert("apple");
@@ -161,12 +171,3 @@ function testMultipleInsertsAndSearches() {
 }
 
 testMultipleInsertsAndSearches();
-
-// ---------------------------------------[PRACTICE]----------------------------------------
-class TrieNode_ {}
-class Trie_ {
-  insert(word, node = this.root) {}
-
-  search(word, node = this.root) {}
-  startsWith(prefix, node = this.root) {}
-}
