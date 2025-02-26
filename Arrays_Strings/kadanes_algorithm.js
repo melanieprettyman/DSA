@@ -3,6 +3,16 @@
  *
  * Purpose: Used to find the maximum sum of a contiguous subarray within
  * a one-dimensional numeric array.
+ * 
+ * Algorithm: 
+ *    1. Initialization:
+ *          Set max_so_far to 0. 
+            Set max_ending_here to 0. 
+      2. Iteration:
+            For each element num in the array:
+              Update max_ending_here as max(num, max_ending_here + num). 
+              Update max_so_far as max(max_so_far, max_ending_here). 
+      3. Result: The final value of max_so_far is the maximum subarray sum. 
  *
  * Why It Works: Kadane’s Algorithm keeps track of the maximum subarray sum ending at the
  * current position by using maxCurrent, and updates maxGlobal if maxCurrent itself becomes

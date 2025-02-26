@@ -4,10 +4,17 @@
  * Purpose: Used to quickly calculate the sum of elements in a range (i, j) in an array.
  *
  * Code Example: Calculate the sum of elements between two indices in an array using prefix sums.
+ * 
+ * Algorithm: 
+ *  1. Initialize: Create a new array (prefix sum array) of the same size as the original array and set the first element of the prefix 
+ *     sum array to the first element of the original array. 
+ *  2. Iterate: Loop through the original array starting from the second element. 
+    3. Calculate cumulative sum: For each element in the original array, add its value to the previous element in the prefix sum array to 
+       calculate the cumulative sum at that index. 
  *
- *Why It Works: By storing cumulative sums up to each index, you can calculate the sum between 
- any two indices in constant time O(1) by subtracting the cumulative sum up to the start of 
- the range from the cumulative sum up to the end of the range.
+ * Why It Works: By storing cumulative sums up to each index, you can calculate the sum between 
+   any two indices in constant time O(1) by subtracting the cumulative sum up to the start of 
+   the range from the cumulative sum up to the end of the range.
  */
 
 function prefixSum(arr) {

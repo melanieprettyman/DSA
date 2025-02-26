@@ -2,6 +2,14 @@
  * SLIDING WINDOW
  *
  * Purpose: Efficiently calculate values from contiguous subarrays of a fixed length.
+ * 
+ * Algorithm: 
+ *    1. Define window size: Determine the fixed size of the sliding window based on the problem requirements. 
+      2. Initialize pointers: Set two pointers, one for the left boundary of the window ("left pointer") and one for the right boundary ("right pointer"). 
+      3. Iterate through data: Move the right pointer forward, adding the new element to the window. Perform calculations on the current window 
+         (e.g., sum, check for specific conditions). If necessary, move the left pointer forward to "slide" the window, removing the element that is no longer 
+         in the window. 
+      4. Update result: Keep track of the best result (e.g., maximum sum, longest substring) encountered during the sliding process. 
  *
  * Code Example: Find the maximum sum of any contiguous subarray of size k.
  *
@@ -52,21 +60,7 @@ function testMaxSumSubarray() {
   });
 }
 
-function myMaxSumSubarray(arr, k) {
-  let windowSum = 0;
-  let sum = 0;
-  let windowStart = 0;
-
-  for (let windowEnd = 0; windowEnd < arr.length; windowEnd++) {
-    windowSum += arr[windowEnd];
-    if (windowEnd >= k - 1) {
-      sum = Math.max(sum, windowSum);
-      windowSum -= arr[windowStart];
-      windowStart++;
-    }
-  }
-  return sum;
-}
+function myMaxSumSubarray(arr, k) {}
 
 // Run the test function
 testMaxSumSubarray();
