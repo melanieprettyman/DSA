@@ -20,3 +20,19 @@ function gcd(a, b) {
 function gcd(big, small) {
   return small === 0 ? big : gcd(small, big % small);
 }
+
+// Reverse a number
+function reverse(x) {
+  let original = x;
+  let reversed = 0;
+
+  while (x > 0) {
+    // Extract the last digit
+    let lastDigit = original % 10;
+    let remainder = reversed * 10;
+    reversed = remainder + lastDigit;
+    original = Math.floor(original / 10);
+  }
+
+  return reversed;
+}
