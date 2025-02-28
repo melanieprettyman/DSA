@@ -1,7 +1,7 @@
 /**
  * BREATH FIRST SEARCH
  *
- * Purpose: searches tree from left to right. Good at finding shortest path (looks at closest node first). Takes up more memory.
+ * Purpose: searches tree from left to right. Good at finding shortest path (looks at closest node first). Cons: takes up more memory.
  *
  * Algorithm:
  *    1. Initialize a Queue (FIFO): BFS uses a queue to keep track of the nodes to visit next.
