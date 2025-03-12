@@ -126,6 +126,22 @@ const findCycle = function (head) {
   return p2;
 };
 
+/*
+1. Initial Setup: 
+    - prehead is a standalone node: prehead -> -1 -> null
+    - Setting prev = prehead means both prev and prehead point to the same node: the -1 node.
+
+2. Modification Through prev
+    - When you do prev.next = l1, you're not only changing where prev.next points but also where prehead.next points because prev and prehead 
+      refer to the same node at this stage.
+    - So, after prev.next = l1, the list looks like: prehead -> -1 -> l1. Now, prehead.next points to l1.  
+
+4. Building the List
+    - As you iterate through l1 and l2, prev keeps moving forward, linking nodes together, and prehead remains at the start. The entire sequence 
+      of nodes linked by prev is accessible via prehead.next.
+
+  So prehead is always pointing to the start of the LL and prev is the tail of the new list. 
+ */
 function mergeTwoLists(l1, l2) {
   // Create a prehead node that will help simplify edge cases
   let prehead = new ListNode(-1);

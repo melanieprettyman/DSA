@@ -66,8 +66,75 @@ class BinaryTree {
   }
 }
 
+/*
+    2D Array BFS
+
+    1. Initialize a Queue: BFS uses a queue to track the cells to explore next.
+    2. Start from a Starting Cell: Typically, you're given a start position in the grid.
+    3. Loop Until the Queue is Empty:
+        i. Dequeue the front cell.
+        ii. Process this cell (e.g., check if it's the target or mark it as visited).
+        iii. Enqueue all adjacent cells that are within bounds and meet certain conditions (e.g., not already visited, not blocked).
+
+    const grid = [
+      [0, 0, 0],
+      [0, 1, 0],
+      [0, 0, 0]
+    ];
+
+    Grid where 0 represents an open cell and 1 represents a blocked cell. Count all reachable cells from a given starting point.
+ */
+function bfsIn2DArray(grid, startRow, startCol) {
+  // Start row is blocked
+  if (grid[startRow][startCol] === 1) {
+    return 0;
+  }
+
+  const directions = [
+    [0, 1], // Up
+    [0, -1], // Down
+    [1, 0], // Right
+    [-1, 0], // Left
+  ];
+
+  let queue = [];
+  // Enque starting position
+  queue.push([startRow, startCol]);
+  grid[startRow][startCol] = 1; // Mark the starting cell as visited by setting it to 1
+  let count = 1; // Start from the initial cell.
+
+  const rows = grid.length;
+  const cols = grid[0].length;
+
+  while (queue.length > 0) {
+    const [currentRow, currentCol] = queue.shift();
+
+    // Explore all four possible directions
+    for (const [dRow, dCol] of directions) {
+      const newRow = currentRow + dRow;
+      const newCol = currentCol + dCol;
+
+      // Check boundaries and if the cell is open.
+      if (
+        newRow >= 0 &&
+        newRow < rows &&
+        newCol >= 0 &&
+        newCol < cols &&
+        grid[newRow][newCol] === 0
+      ) {
+        grid[newRow][newCol] = 1; // Mark as visited
+        queue.push([newRow, newCol]); // Enqueue for further exploration.
+        count++; // Increment the count of reachable cells.
+      }
+    }
+  }
+  return count;
+}
+
 // ---------------------------------------[PRACTICE]----------------------------------------
 function bfs_(tree) {}
+
+function bfsIn2DArray_(grid, startRow, startCol) {}
 // ---------------------------------------[TEST]----------------------------------------
 
 function testBFS() {
@@ -104,5 +171,53 @@ function testBFS() {
 
   console.log("Passed: BFS returned correct order.");
 }
+function testBfsIn2DArray() {
+  // Test Case 1: Simple open grid
+  let grid1 = [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+  ];
+  let result1 = bfsIn2DArray_(grid1, 0, 0);
+  console.log("Test 1 (Expecting 9):", result1); // Should visit all cells
+
+  // Test Case 2: Grid with blocks
+  let grid2 = [
+    [0, 1, 0],
+    [0, 1, 0],
+    [0, 0, 0],
+  ];
+  let result2 = bfsIn2DArray_(grid2, 0, 0);
+  console.log("Test 2 (Expecting 7):", result2); // Should visit 3 open cells in the first column
+
+  // Test Case 3: Starting at a blocked cell
+  let grid3 = [
+    [1, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+  ];
+  let result3 = bfsIn2DArray_(grid3, 0, 0);
+  console.log("Test 3 (Expecting 0):", result3); // Should not move anywhere
+
+  // Test Case 4: Large grid, start position surrounded by blocks
+  let grid4 = [
+    [1, 1, 1],
+    [1, 0, 1],
+    [1, 1, 1],
+  ];
+  let result4 = bfsIn2DArray_(grid4, 1, 1);
+  console.log("Test 4 (Expecting 1):", result4); // Only the start position is reachable
+
+  // Test Case 5: Edge start with no blocks
+  let grid5 = [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+  ];
+  let result5 = bfsIn2DArray_(grid5, 2, 2);
+  console.log("Test 5 (Expecting 9):", result5); // Should visit all cells starting from the corner
+}
+
+testBfsIn2DArray();
 
 testBFS();
