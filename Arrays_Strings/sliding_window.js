@@ -37,6 +37,46 @@ function maxSumSubarray(arr, k) {
 
   return maxSum;
 }
+/*
+  You are given a 0-indexed string blocks of length n, where blocks[i] is either 'W' or 'B', representing the color of the ith block. 
+  The characters 'W' and 'B' denote the colors white and black, respectively. You are also given an integer k, which is the desired number of consecutive black blocks.
+  In one operation, you can recolor a white block such that it becomes a black block. Return the minimum number of operations needed such that there is at least one 
+  occurrence of k consecutive black blocks.
+
+  Input: blocks = "WBBWWBBWBW", k = 7
+  Output: 3
+
+  Input: blocks = "WBWBBBW", k = 2
+  Output: 0
+  Explanation:
+  No changes need to be made, since 2 consecutive black blocks already exist.
+  Therefore, we return 0.
+*/
+
+function minimumRecolors(blocks, k) {
+  let minChanges = Infinity; // Start with a large number to track minimum changes
+  let currentW = 0; // Current count of 'W's in the window
+
+  // Initial count of 'W's in the first window
+  for (let i = 0; i < k; i++) {
+    if (blocks[i] === "W") currentW++;
+  }
+  minChanges = currentW; // Set the first window's count as initial minimum
+
+  // Slide the window across the rest of the blocks
+  for (let i = k; i < blocks.length; i++) {
+    // Remove the contribution of the block that slides out of the window
+    if (blocks[i - k] === "W") currentW--;
+    // Add the contribution of the new block entering the window
+    if (blocks[i] === "W") currentW++;
+
+    // Update minimum changes needed
+    minChanges = Math.min(minChanges, currentW);
+  }
+
+  return minChanges; // Return the minimum number of changes found
+}
+
 function testMaxSumSubarray() {
   const testCases = [
     { arr: [1, 2, 3, 4, 6], k: 2, expected: 10 },
@@ -60,7 +100,26 @@ function testMaxSumSubarray() {
   });
 }
 
+function testMinimumRecolors() {
+  let test1 = minimumRecolors_("WBBWWBBWBW", 7);
+  console.log(
+    `Test1 WBBWWBBWBW: ${
+      test1 === 3 ? "Passed" : "Failed"
+    } - Expected 3 and got ${test1}`
+  );
+
+  let test2 = minimumRecolors_("WBWBBBW", 2);
+  console.log(
+    `Test 2 "WBWBBBW": ${
+      test2 === 0 ? "Passed" : "Failed"
+    } - Expected 0 and got ${test2}`
+  );
+}
+// --------------------------------------------------------------------------------------
 function myMaxSumSubarray(arr, k) {}
+
+function minimumRecolors_(blocks, k) {}
 
 // Run the test function
 testMaxSumSubarray();
+testMinimumRecolors();
