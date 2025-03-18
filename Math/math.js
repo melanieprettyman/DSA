@@ -14,11 +14,14 @@
  *               at this point will be the GCD of a and b.
  */
 
-function gcd(a, b) {
-  return b === 0 ? a : gcd(b, a % b);
-}
 function gcd(big, small) {
   return small === 0 ? big : gcd(small, big % small);
+}
+
+function calculateGCD(a, b) {
+  let small = a < b ? a : b;
+  let big = a < b ? b : a;
+  return gcd(big, small);
 }
 
 // Reverse a number
@@ -36,3 +39,25 @@ function reverse(x) {
 
   return reversed;
 }
+
+//------------[PRACTICE]-------------
+function calculateGCD_(a, b) {
+  let small = a < b ? a : b;
+  let big = a < b ? b : a;
+
+  function gcd_(big, small) {
+    return small === 0 ? big : gcd_(small, big % small);
+  }
+
+  return gcd_(big, small);
+}
+
+//-------------[TEST]----------------
+
+function testCalculateGCD() {
+  // Test Case 1: 12 and 18 ->6
+  let result = calculateGCD_(12, 18);
+  console.log("Test 1 (Expecting 6):", result);
+}
+
+testCalculateGCD();

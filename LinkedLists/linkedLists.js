@@ -50,6 +50,12 @@
     }
  */
 
+class ListNode {
+  constructor(val, next = null) {
+    this.val = val;
+    this.next = next;
+  }
+}
 // example [1]->[2]->[3]->[4]->null
 function reverseLinkedList(head) {
   let prev = null; // first iteration, prev should terminator
@@ -169,18 +175,12 @@ function mergeTwoLists(l1, l2) {
 }
 
 // ---------------------------------------[PRACTICE]----------------------------------------
+// example [1]->[2]->[3]->[4]->null
 function reverseLinkedList_(head) {}
 //Given the head of a LL, return the node where the cycle begins. If there is no cycle, return null.
 const findCycle_ = function (head) {};
 function mergeTwoLists_(l1, l2) {}
 // ---------------------------------------[TEST]----------------------------------------
-
-class ListNode {
-  constructor(val, next = null) {
-    this.val = val;
-    this.next = next;
-  }
-}
 
 function testReverseLinkedList() {
   // Create a simple linked list 1->2->3->null

@@ -117,6 +117,7 @@ function matrixDFS(matrix, row, col, seen, values) {
 }
 // ---------------------------------------[PRACTICE]----------------------------------------
 function dfs_(tree) {}
+const matrixTraverseDFS_ = function (matrix) {};
 // ---------------------------------------[TEST]----------------------------------------
 
 function testDFS() {
@@ -154,12 +155,12 @@ function testMatrixTraverseDFS() {
 
   // Test 1: Empty Matrix
   let matrix1 = [];
-  let result1 = matrixTraverseDFS(matrix1);
+  let result1 = matrixTraverseDFS_(matrix1);
   console.log("Test 1 - Empty Matrix:", result1.length === 0 ? "Pass" : "Fail");
 
   // Test 2: Single Element Matrix
   let matrix2 = [[5]];
-  let result2 = matrixTraverseDFS(matrix2);
+  let result2 = matrixTraverseDFS_(matrix2);
   console.log(
     "Test 2 - Single Element Matrix:",
     result2.length === 1 && result2[0] === 5 ? "Pass" : "Fail"
@@ -171,7 +172,7 @@ function testMatrixTraverseDFS() {
     [4, 5, 6],
     [7, 8, 9],
   ];
-  let result6 = matrixTraverseDFS(matrix6);
+  let result6 = matrixTraverseDFS_(matrix6);
   console.log(
     "Test 3 - Non-Square Matrix:",
     JSON.stringify(result6) === JSON.stringify([1, 2, 3, 6, 9, 8, 5, 4, 7])
@@ -182,4 +183,4 @@ function testMatrixTraverseDFS() {
 
 testMatrixTraverseDFS();
 
-//testDFS();
+testDFS();
