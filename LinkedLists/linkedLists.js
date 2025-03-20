@@ -174,12 +174,112 @@ function mergeTwoLists(l1, l2) {
   return prehead.next; // Return the merged list, excluding the prehead
 }
 
+class DListNode {
+  constructor(data) {
+    this.data = data;
+    this.prev = null;
+    this.next = null;
+  }
+}
+class DoublyLinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+  }
+
+  //Add new node to end of list
+  append(data) {
+    const newNode = new DListNode(data);
+
+    //if the list is empty
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      //Swap new node and tail
+      this.tail.next = newNode;
+      newNode.prev = this.tail;
+      this.tail = newNode;
+    }
+  }
+  //Add new node to beginging of list
+  prepend(data) {
+    const newNode = new DListNode(data);
+
+    //if the list is empty
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      //Swap new node and head
+      this.head.prev = newNode;
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+  }
+
+  remove(data) {
+    if (!this.head) {
+      return; // If list is empty
+    }
+    let current = this.head;
+    while (current) {
+      if (current.data === data) {
+        //found node to remove
+        if (current.next) {
+          current.prev.next = current.next;
+        }
+        if (current.prev) {
+          current.next.prev = current.prev;
+        }
+        if (current === this.head) {
+          this.head = current.next;
+        }
+        if (current === this.tail) {
+          this.tail = current.prev;
+        }
+        return;
+      }
+      current = current.next;
+    }
+  }
+}
 // ---------------------------------------[PRACTICE]----------------------------------------
 // example [1]->[2]->[3]->[4]->null
 function reverseLinkedList_(head) {}
 //Given the head of a LL, return the node where the cycle begins. If there is no cycle, return null.
 const findCycle_ = function (head) {};
 function mergeTwoLists_(l1, l2) {}
+
+class DListNode_ {}
+class DoublyLinkedList_ {
+  //Add new node to end of list
+  append(data) {}
+  //Add new node to beginging of list
+  prepend(data) {}
+  remove(data) {}
+  // Print the list data from head to tail
+  printForward() {
+    let current = this.head;
+    let result = "";
+    while (current) {
+      result += current.data + " <-> ";
+      current = current.next;
+    }
+    return result + "null";
+  }
+
+  // Print the list data from tail to head
+  printBackward() {
+    let current = this.tail;
+    let result = "";
+    while (current) {
+      result += current.data + " <-> ";
+      current = current.prev;
+    }
+    return result + "null";
+  }
+}
 // ---------------------------------------[TEST]----------------------------------------
 
 function testReverseLinkedList() {
@@ -206,7 +306,7 @@ function testReverseLinkedList() {
   console.log("Test Reverse Linked List:", pass ? "PASS" : "FAIL");
 }
 
-testReverseLinkedList();
+// testReverseLinkedList();
 
 function testFindCycle() {
   // List with a cycle: 1->2->3->4->5->3...
@@ -225,7 +325,7 @@ function testFindCycle() {
   console.log("Test Find Cycle:", result === third ? "PASS" : "FAIL");
 }
 
-testFindCycle();
+// testFindCycle();
 
 function testMergeTwoLists() {
   // List 1: 1->3->5
@@ -254,4 +354,29 @@ function testMergeTwoLists() {
   console.log("Test Merge Two Lists:", pass ? "PASS" : "FAIL");
 }
 
-testMergeTwoLists();
+function testDoublyLinkedList() {
+  const list = new DoublyLinkedList_();
+  list.append(10);
+  list.append(20);
+  list.append(30);
+  list.prepend(0);
+  const result1 = list.printForward(); // 0 <-> 10 <-> 20 <-> 30 <-> null
+  console.log(
+    "Test 1:",
+    result1 === "0 <-> 10 <-> 20 <-> 30 <-> null" ? "PASS" : "FAIL"
+  );
+  const result2 = list.printBackward(); // 30 <-> 20 <-> 10 <-> 0 <-> null
+  console.log(
+    "Test 2:",
+    result2 === "30 <-> 20 <-> 10 <-> 0 <-> null" ? "PASS" : "FAIL"
+  );
+  list.remove(20);
+  const result3 = list.printForward(); // 0 <-> 10 <-> 30 <-> null
+  console.log(
+    "Test 3:",
+    result3 === "0 <-> 10 <-> 30 <-> null" ? "PASS" : "FAIL"
+  );
+}
+
+testDoublyLinkedList();
+// testMergeTwoLists();

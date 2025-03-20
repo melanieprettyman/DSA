@@ -246,16 +246,63 @@ function areIdentical(root1, root2) {
 
 // ---------------------------------------[PRACTICE]----------------------------------------
 
-class TreeNode_ {}
+class TreeNode_ {
+  constructor(value) {
+    this.val = value;
+    this.left = null;
+    this.right = null;
+  }
+}
 
 class BinarySearchTree_ {
-  insert(value) {}
+  constructor() {
+    this.root = null;
+  }
+  insert(value) {
+    const newNode = new TreeNode_(value);
+    if (this.root === null) {
+      this.root = newNode;
+    } else {
+      this.insertNode(this.root, newNode);
+    }
+  }
 
-  insertNode(currentNode, newNode) {}
+  insertNode(currentNode, newNode) {
+    if (newNode.val < currentNode.val) {
+      if (currentNode.left === null) {
+        currentNode.left = newNode;
+      } else {
+        currentNode.left = this.insertNode(currentNode.left, newNode);
+      }
+    } else {
+      if (currentNode.right === null) {
+        return currentNode.right;
+      } else {
+        currentNode.right = this.insertNode(currentNode.right, newNode);
+      }
+    }
+  }
 
-  delete(value) {}
+  delete(value) {
+    this.deleteNode(this.root, value);
+  }
 
-  deleteNode(currentNode, value) {}
+  deleteNode(currentNode, value) {
+    if (currentNode === null) {
+      return null;
+    }
+    if (currentNode.val < value) {
+      currentNode.left = this.deleteNode(currentNode.left, value);
+    } else if (currentNode.val > value) {
+      currentNode.left = this.deleteNode(currentNode.left, value);
+    } else {
+      if (currentNode.left === null && currentNode.right === null) {
+        return null;
+      } else if (currentNode.right === null) {
+        currentNode = currentNode.left;
+      }
+    }
+  }
 
   findMinNode(currentNode) {}
 
