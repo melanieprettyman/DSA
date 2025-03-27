@@ -1,8 +1,7 @@
 /**
- * LINKED LISTS
- * 
- *
- Types of Linked Lists
+ **LINKED LISTS**
+
+**Types of Linked Lists:**
     - Singly Linked Lists: Each node contains data and a pointer to the next node in the sequence. This is the simplest form of a linked list.
           [x]->[x]->[x]->[x]->null
            ^              ^
@@ -15,39 +14,31 @@
                head              tail
     - Circular Linked Lists: The last node points back to the first node, making the list circular. This can be singly or doubly linked.
 
- Basic Operations
-    - Insertion:  O(1) for head, O(n) for middle/end
-    - Deletion:  O(1) for head, O(n) for middle/end
-    - Search: O(n) Finding a node or retrieving data from the list requires traversing the list from the beginning
-    - Traversal: (O(n) Walking through each node to perform operations like printing or modifying node values.
-  
-  Pros: dynamic data structure, efficient Memory Usage, ease of Insertion/Deletion
-  Cons: lots of memory overhead (every node needs extra memory for its pointer(s)), No Random Access (can't direct or random access to the nodes), Slower Access Time: access times are linear (O(n)
-  
+**Basic Operations:**
+- **Insertion:** O(1) for inserting at the head, O(n) for inserting in the middle or end.
+- **Deletion:** O(1) for deleting at the head, O(n) for deleting in the middle or end.
+- **Search:** O(n), as it might require traversing the entire list to find a specific node.
+- **Traversal:** O(n), involves walking through each node to perform operations.
 
-  Problems: 
-    -Always has a head. LL problems recieve it's head and return a LL via it's head. 
-    -Don't always have a tail
+**Advantages:**
+- **Dynamic Size:** List size can grow and shrink dynamically.
+- **Efficient Memory Usage:** No need to preallocate memory.
+- **Ease of Insertion/Deletion:** Particularly at the beginning of the list.
 
-  LL Algorithm: 
-   
-    class ListNode(val, next) {
-       this.val = (val)
-       this.next = (next)
+**Disadvantages:**
+- **Memory Overhead:** Each node requires extra memory for pointers.
+- **No Random Access:** Cannot directly access the nodes by index.
+- **Slower Access Time:** Linear time required to access elements, unlike arrays.
+
+**Common Operations in Code:**
+- Nodes are usually defined with a class containing the value and pointers:
+  ```javascript
+  class ListNode {
+    constructor(val, next = null) {
+      this.val = val;
+      this.next = next;
     }
-
-    function(head){
-        let currentNode = head; 
-
-        while(currentNode !== null){
-        
-          {PREFORM OPERATION}
-        
-          currentNode = currentNode.next; 
-        
-        }
-    
-    }
+  }
  */
 
 class ListNode {
@@ -244,6 +235,27 @@ class DoublyLinkedList {
     }
   }
 }
+
+function reverseDoublyLinkedList(head) {
+  let current = head;
+  let newHead = null;
+
+  while (current !== null) {
+    // Swap the next and prev pointers
+    const temp = current.next;
+    current.next = current.prev;
+    current.prev = temp;
+
+    // Update the new head to be the current node
+    newHead = current;
+
+    // Move to the next node in the original list
+    current = temp; // This was originally current.prev before the swap
+  }
+
+  return newHead;
+}
+
 // ---------------------------------------[PRACTICE]----------------------------------------
 // example [1]->[2]->[3]->[4]->null
 function reverseLinkedList_(head) {}
@@ -280,6 +292,7 @@ class DoublyLinkedList_ {
     return result + "null";
   }
 }
+function reverseDoublyLinkedList_(head) {}
 // ---------------------------------------[TEST]----------------------------------------
 
 function testReverseLinkedList() {
@@ -306,8 +319,6 @@ function testReverseLinkedList() {
   console.log("Test Reverse Linked List:", pass ? "PASS" : "FAIL");
 }
 
-// testReverseLinkedList();
-
 function testFindCycle() {
   // List with a cycle: 1->2->3->4->5->3...
   const first = new ListNode(1);
@@ -324,8 +335,6 @@ function testFindCycle() {
   const result = findCycle_(first);
   console.log("Test Find Cycle:", result === third ? "PASS" : "FAIL");
 }
-
-// testFindCycle();
 
 function testMergeTwoLists() {
   // List 1: 1->3->5
@@ -377,6 +386,29 @@ function testDoublyLinkedList() {
     result3 === "0 <-> 10 <-> 30 <-> null" ? "PASS" : "FAIL"
   );
 }
+function testReverseDoublyLinkedList() {
+  let node1 = new DListNode(1);
+  let node2 = new DListNode(2);
+  let node3 = new DListNode(3);
 
+  node1.next = node2;
+  node2.prev = node1;
+  node2.next = node3;
+  node3.prev = node2;
+
+  let reversedHead = reverseDoublyLinkedList_(node1);
+  let current = reversedHead;
+  let result = [];
+  while (current) {
+    result.push(current.data);
+    current = current.next;
+  }
+  const resultCheck = result.join(",") === "3,2,1";
+  console.log("Test ReverseDoublyLinkedList:", resultCheck ? "PASS" : "FAIL");
+}
+
+testReverseDoublyLinkedList();
+testReverseLinkedList();
+testFindCycle();
 testDoublyLinkedList();
-// testMergeTwoLists();
+testMergeTwoLists();
