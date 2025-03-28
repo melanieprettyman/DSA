@@ -40,6 +40,26 @@ function reverse(x) {
   return reversed;
 }
 
+var myPow = function (x, n) {
+  if (n === 0) return 1; // Base case: any number to the power of 0 is 1
+  if (n < 0) {
+    x = 1 / x; // Invert x if n is negative
+    n = -n; // Make n positive
+  }
+
+  let result = 1;
+  while (n > 0) {
+    if (n % 2 === 1) {
+      // If n is odd, multiply the current x to the result
+      result *= x;
+    }
+    x *= x; // Square x
+    n = Math.floor(n / 2); // Divide n by 2
+  }
+
+  return result;
+};
+
 //------------[PRACTICE]-------------
 function calculateGCD_(a, b) {
   let small = a < b ? a : b;
